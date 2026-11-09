@@ -1,0 +1,19 @@
+services:
+  vaultwarden:
+    image: vaultwarden/server:latest
+    container_name: vault_warden
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:443:80"
+    volumes:
+      - ./data:/data
+      - ./certgen:/ssl
+    environment:
+      - ADMIN_TOKEN=$(ADMIN_TOKEN)
+      - DOMAIN=https://vault.example.com
+      - ROCKET_TLS={certs="/ssl/bitwarden.crt",key="/ssl/bitwarden.key"}
+    networks:
+      - web-net
+
+networks:
+  web-net:

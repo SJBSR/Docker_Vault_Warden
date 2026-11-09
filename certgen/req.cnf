@@ -1,0 +1,17 @@
+[req]
+distinguished_name = dn
+x509_extensions = v3_req
+prompt = no
+
+[dn]
+CN = vault.example.com
+
+[v3_req]
+basicConstraints = critical, CA:FALSE
+keyUsage = critical, digitalSignature, keyEncipherment
+extendedKeyUsage = serverAuth
+subjectAltName = DNS:vault.example.com, IP:127.0.0.1
+
+[alt_names]
+DNS.1 = vault.example.com
+IP.1 = 127.0.0.1
